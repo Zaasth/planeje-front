@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#botao-obj:hover{
+    transform:scaleZ(200px)
+}

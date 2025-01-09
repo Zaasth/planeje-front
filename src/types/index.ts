@@ -4,6 +4,7 @@ export interface Transacoes {
   valor: number;
   categoria: string;
   data: string;
+  dataVencimento: string;
   descricao: string;
   recorrente: boolean;
 }

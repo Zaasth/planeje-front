@@ -7,6 +7,7 @@ export const mockTransacoes: Transacoes[] = [
     valor: 9000,
     categoria: 'salário',
     data: '01/03/2024',
+    dataVencimento: '',
     descricao: 'Salário mensal',
     recorrente: true,
   },
@@ -16,9 +17,11 @@ export const mockTransacoes: Transacoes[] = [
     valor: 1500,
     categoria: 'Aluguel',
     data: '02/03/2024',
+    dataVencimento: '05/04/2024',
     descricao: 'Aluguel casa',
     recorrente: true,
   },
+  
 ];
 
 export const mockInvestimentos: Investimentos[] = [
@@ -44,6 +47,14 @@ export const mockInvestimentos: Investimentos[] = [
     valorInicial: 10000,
     valorAtual: 9586,
     tipo: 'Fundo imobiliário',
+    dataInicio: '01/02/2024'
+  },
+  {
+    id: '4',
+    nome: 'Tigrinho',
+    valorInicial: 90000,
+    valorAtual: -90000,
+    tipo: 'Apostas',
     dataInicio: '01/02/2024'
   },
 ];

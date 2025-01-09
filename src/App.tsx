@@ -12,6 +12,7 @@ import EditInvestimento from './pages/EditInvestimento.tsx';
 import DeleteInvestimento from './pages/DeleteInvestimento.tsx';
 import EditObjetivo from './pages/EditObjetivo.tsx';
 import DeleteObjetivo from './pages/DeleteObjetivo.tsx';
+import { MyAccount } from './pages/MyAccount.tsx';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Route path="/investimentos" element={<Investimentos />} />
             <Route path="/objetivos" element={<Objetivos />} />
             <Route path="/relatorios" element={<Relatorios />} />
+            <Route path="/account" element={<MyAccount />} />
             <Route path="/transacoes/edit/:id" element={<EditTransacao/>} />
             <Route path="/transacoes/delete/:id" element={<DeleteTransacao/>} />
             <Route path="/investimentos/edit/:id" element={<EditInvestimento/>} />

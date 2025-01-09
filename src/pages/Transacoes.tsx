@@ -1,21 +1,42 @@
 import React, { useState } from 'react';
 import { mockTransacoes } from '../data/mockData';
-import { Plus, Search } from 'lucide-react';
+import { MousePointer, Plus, Search } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Switch from '@mui/material/Switch';
+import Slide from '@mui/material/Slide';
+import { TransitionProps } from '@mui/material/transitions';
+
+const Transition = React.forwardRef(function Transition(
+  props: TransitionProps & {
+    children: React.ReactElement<any, any>;
+  },
+  ref: React.Ref<unknown>,
+) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 const Transacoes = () => {
   const [isChecked, setIsChecked] = useState(false);
+
+  const [open, setOpen] = React.useState(false);
+  
+    const handleClickOpen = () => {
+      setOpen(true);
+    };
+  
+    const handleClose = () => {
+      setOpen(false);
+    };
+
   return (
     <div className="p-6">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold text-gray-800">Transações</h1>
-        <button className="flex items-center gap-2 bg-emerald-600 text-white px-4 py-2 rounded-lg hover:bg-emerald-700 transition-colors">
+        <button onClick={handleClickOpen} className="flex items-center gap-2 bg-emerald-600 text-white px-4 py-2 rounded-lg hover:bg-emerald-700 transition-colors">
           <Plus size={20} />
           Adicionar Transação
         </button>
       </div>
-
       <div className="bg-white rounded-lg shadow-md p-6">
         <div className="flex gap-4 mb-6">
           <div className="flex-1 relative">
@@ -44,7 +65,7 @@ const Transacoes = () => {
                 <th className="text-left py-3 px-4">Tipo</th>
                 <th className="text-left py-3 px-4">Recorrente</th>
                 <th className="text-left py-3 px-4">Pago</th>
-                <th className="text-left py-3 px-4">Data Validade</th>
+                <th className="text-left py-3 px-4">Data Vencimento</th>
                 <th className="text-left py-3 px-4">Opções</th>
               </tr>
             </thead>
@@ -78,7 +99,10 @@ const Transacoes = () => {
                     </span>
                   </td>
                   <td>
-                    <Switch defaultChecked />
+                    {transaction.tipo === 'Renda' ? <Switch disabled/> : <Switch/>}
+                  </td>
+                  <td className="py-3 px-4">
+                    {transaction.dataVencimento == '' ? 'Não Possui' : transaction.dataVencimento}
                   </td>
                   <td className="py-3 px-4">
                     <span className="font-medium flex items-center space-x-4">
@@ -89,7 +113,6 @@ const Transacoes = () => {
                           <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
                         </svg>
                       </Link>
-
                       <Link to={`/transacoes/delete/${transaction.id}`} className="flex items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" height="25" viewBox="0 0 24 24">
                           <path d="M 10 2 L 9 3 L 3 3 L 3 5 L 21 5 L 21 3 L 15 3 L 14 2 L 10 2 z M 4.3652344 7 L 5.8925781 20.263672 C 6.0245781 21.253672 6.877 22 7.875 22 L 16.123047 22 C 17.121047 22 17.974422 21.254859 18.107422 20.255859 L 19.634766 7 L 4.3652344 7 z"></path>
